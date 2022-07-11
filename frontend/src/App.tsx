@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import Gallery from "./components/Gallery";
 
 function App() {
 
 
 
     return (
-        <div>
-            <h1>Hallo</h1>
-        </div>
+       <Gallery/>
     );
 }
 
