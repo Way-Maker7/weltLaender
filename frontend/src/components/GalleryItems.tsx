@@ -8,7 +8,9 @@ export default function GalleryItems(props: GalleryItemsProps){
 
     return(
         <div>
-            <ul><li >{props.country.cca2}</li></ul>
+            {/*<ul>
+                <li>{props.country.cca2}</li>
+            </ul>*/}
             <div>
                 {props.country.translations.deu.common}
             </div>

@@ -5,8 +5,6 @@
 
 }
 
-
-
  interface Translations {
         deu: DE;
 
