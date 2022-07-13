@@ -14,7 +14,7 @@ export default function Gallery(){
 
         const [countries, setCountries] = useState<Array<Country>>([])
 
-    const names = countries.map((c => <GalleryItems country={{ cca2: c.cca2, name: c.name}}/>))
+    const names = countries.map((c => <GalleryItems country={c}/>))
 
     {/*
         const names = countries.map((c) => (<div>{c.name.common}</div>))*/
