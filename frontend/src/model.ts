@@ -4,8 +4,9 @@ export interface Country {
     translations: Translations;
     flags: Flags;
     capital: string;
-    languages: any;
     population: string;
+    continent: Continents;
+    languages: any;
     cca2?: string;
     flag?: string;
 
@@ -14,7 +15,6 @@ export interface Country {
 
 interface Translations {
     deu: DE;
-
 
 }
 
@@ -26,6 +26,10 @@ interface DE {
 interface Flags {
     svg: string;
     png: string;
+}
+
+interface Continents{
+    continents: string;
 }
 
 {/*

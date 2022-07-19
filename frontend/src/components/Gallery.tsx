@@ -12,9 +12,11 @@ export default function Gallery(){
 
     const [rangeValue, setRangeValue] = useState("3")
 
-    const names = countries.slice(0, parseInt(rangeValue)).map((c => <GalleryItems country={c}/>))
+    const names = countries.filter((c) => c.continent[0].includes(setRadio)).slice(0, parseInt(rangeValue)).map((c => <GalleryItems country={c}/>))
 
+ const radios = ["Africa", "America", "Asia", "Europe", "Oceania"]
 
+    const [radio, setRadio] = useState("");
 
 
     useEffect( () => {
@@ -30,6 +32,15 @@ export default function Gallery(){
             <br/>
                 <input type= "range" min= "1" max = "250" defaultValue={rangeValue}
                        onChange={(e) => setRangeValue(e.target.value)}/>
+             <br/>
+            <br/>
+            {
+                radios.map((continents) => <div><input type= "radio" id= {continents} name="radioInput" defaultValue={radio} onChange={(e) =>
+                setRadio(e.target.id)} />
+                    <label  htmlFor= {continents}>{continents}</label></div>)
+            }
+
+
             <br/>
             <br/>
 
