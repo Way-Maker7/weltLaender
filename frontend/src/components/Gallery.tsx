@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {Country} from "../model";
 import GalleryItems from "./GalleryItems";
-
+import "./GalleryItems.css"
 
 
 export default function Gallery(){
@@ -10,7 +10,10 @@ export default function Gallery(){
 
         const [countries, setCountries] = useState<Array<Country>>([])
 
-    const names = countries.map((c => <GalleryItems country={c}/>))
+    const [rangeValue, setRangeValue] = useState("3")
+
+    const names = countries.slice(0, parseInt(rangeValue)).map((c => <GalleryItems country={c}/>))
+
 
 
 
@@ -22,8 +25,13 @@ export default function Gallery(){
     }, [])
 
     return(
-        <div>
+        <div className= "Gallery">
             <h1>Countries</h1>
+            <br/>
+                <input type= "range" min= "1" max = "250" defaultValue={rangeValue}
+                       onChange={(e) => setRangeValue(e.target.value)}/>
+            <br/>
+            <br/>
 
             <div>{names}</div>
         </div>
