@@ -12,11 +12,12 @@ export default function Gallery(){
 
     const [rangeValue, setRangeValue] = useState("3")
 
-    const names = countries.filter((c) => c.continent[0].includes(setRadio)).slice(0, parseInt(rangeValue)).map((c => <GalleryItems country={c}/>))
 
- const radios = ["Africa", "America", "Asia", "Europe", "Oceania"]
+    const radios = ["Africa", "America", "Asia", "Europe", "Oceania"]
 
-    const [radio, setRadio] = useState("");
+    const [radio, setRadio] = useState("Africa");
+
+    const names = countries.filter((c) => c.continents.includes(radio)).slice(0, parseInt(rangeValue)).map((c => <GalleryItems country={c}/>))
 
 
     useEffect( () => {
