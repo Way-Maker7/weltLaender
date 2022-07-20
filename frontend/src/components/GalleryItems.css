@@ -1,0 +1,17 @@
+.Items{
+    background-color: darkgrey;
+    border-radius: 37px;
+    min-width: 17%;
+    text-align: center;
+    cursor: pointer;
+
+}
+
+
+img{
+    border-radius: 50%;
+}
+
+ul{
+    list-style: none;
+}

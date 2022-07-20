@@ -1,29 +1,37 @@
+import {keyboard} from "@testing-library/user-event/dist/keyboard";
 
-    export interface Country {
-        translations: Translations;
-        cca2: String;
+export interface Country {
+    translations: Translations;
+    flags: Flags;
+    capital: string;
+    languages: any;
+    population: string;
+    cca2?: string;
+    flag?: string;
+
 
 }
 
-
-
- interface Translations {
-        deu: DE;
+interface Translations {
+    deu: DE;
 
 
 }
 
-interface DE{
-    common: String;
-    official: String;
+interface DE {
+    common: string;
+    official: string;
 }
 
+interface Flags {
+    svg: string;
+    png: string;
+}
 
 {/*
-    export interface Country {
-        name: { common: String; official: String };
-        cca2: String;
-
-    }
- */
+    interface Languages {
+        [key: string]: string;
+    }*/
 }
+
+
