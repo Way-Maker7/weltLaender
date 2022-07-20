@@ -14,11 +14,9 @@ export default function GalleryItems(props: GalleryItemsProps) {
                 {props.country.translations.deu.common} <br/>
                 {"Capital : " + props.country.capital} <br/>
                 {/*{"Language " + props.country.languages}<br/>*/}
-                {"Population " + props.country.population}<br/><br/>
+                {"Population: " + props.country.population}<br/><br/>
                <ul> <li><img src={props.country.flags.png} alt="flage"/></li></ul>
 
-
-                {/*<ul><li>{props.country.flag}</li></ul>*/}
             </div>
         </div>
     )
