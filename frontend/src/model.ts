@@ -26,9 +26,7 @@ interface Flags {
     png: string;
 }
 
-interface Continents{
-    continents: string;
-}
+
 
 
 
