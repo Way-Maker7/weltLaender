@@ -10,6 +10,11 @@ public class Blogs {
     @Id
     private String id;
 
+    private String author;
+
+    private String content;
+
+
     public String hello(){
         return "sabou";
     }
