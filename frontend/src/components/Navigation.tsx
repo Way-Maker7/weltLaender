@@ -9,8 +9,8 @@ export default function Navigation(){
                     <li>home</li>
                 </NavLink>
 
-                <NavLink to="/login">
-                    <li>login</li>
+                <NavLink to="/blog">
+                    <li>blog</li>
                 </NavLink>
             </ul>
         </div>

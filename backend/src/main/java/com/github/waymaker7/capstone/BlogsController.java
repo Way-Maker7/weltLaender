@@ -7,11 +7,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/Blogs")
+@RequestMapping("/api/blog")
+public class BlogsController {
 
-public class BlogsModel {
     @GetMapping
-    public List<Blogs> getTasks(){
+    public List<Blogs> getBlogs(){
+
         return null;
     }
+
+
+
 }
