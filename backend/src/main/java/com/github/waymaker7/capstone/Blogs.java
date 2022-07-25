@@ -3,8 +3,10 @@ package com.github.waymaker7.capstone;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
+//@Document(collection = "articles")
 public class Blogs {
 
     @Id
@@ -14,10 +16,12 @@ public class Blogs {
 
     private String content;
 
-
-    public String hello(){
-        return "sabou";
+    public Blogs(String author, String content){
+        this.author = author;
+        this.content = content;
     }
+
+
 
 
 }

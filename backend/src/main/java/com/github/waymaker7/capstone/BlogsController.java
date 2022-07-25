@@ -1,9 +1,7 @@
 package com.github.waymaker7.capstone;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,6 +16,11 @@ public class BlogsController {
     public List<Blogs> getBlogs(){
 
         return blogsServices.findAll();
+    }
+
+    @PostMapping
+    public void createPost(@RequestBody Blogs blogs){
+        blogsServices.createPost(blogs);
     }
 
 

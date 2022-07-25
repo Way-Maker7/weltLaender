@@ -11,7 +11,16 @@ import java.util.List;
 public class BlogsServices {
 
     private final BlogsRepository blogsRepository;
-public List<Blogs> findAll(){
+
+    public void createPost(Blogs blogs) {
+        blogsRepository.save(blogs);
+    }
+
+   /* public void createPost(Blogs blogs) {
+        BlogsRepository.save(blogs);
+    }*/
+
+    public List<Blogs> findAll(){
     return blogsRepository.findAll();
 }
 }

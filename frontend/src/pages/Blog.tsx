@@ -12,7 +12,7 @@ export default function Blog() {
             <Navigation/>
             <h1>Blog</h1>
             <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="enter your name please"/>
+                <input type="text" placeholder="enter your name please" />
                 <br/>
                 <br/>
                 <textarea  placeholder="in which country were you last time?
