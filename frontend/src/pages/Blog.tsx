@@ -1,17 +1,20 @@
 import Navigation from "../components/Navigation";
+import {FormEvent} from "react";
+import Article from "../components/Article";
+
 
 
 export default function Blog() {
 
-    const handleSubmit = () => {
-
+    const submitForm = (ev: FormEvent) => {
+        ev.preventDefault();
     };
 
     return (
         <div>
             <Navigation/>
             <h1>Blog</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={submitForm}>
                 <input type="text" placeholder="enter your name please" />
                 <br/>
                 <br/>
@@ -23,9 +26,9 @@ export default function Blog() {
 
     </textarea>
                 <br/>
-                <input type="submit" value="send"/>
+                <input type="submit" value="Save"/>
             </form>
-            <ul></ul>
+            <ul><Article/></ul>
         </div>
 
     )
