@@ -8,7 +8,6 @@ export default function Blog() {
     const [content, setContent] = useState('');
     const [error, setError] = useState(false);
 
-
     const submitForm = (ev: FormEvent) => {
         ev.preventDefault();
         createPost({  author: author, content: content
