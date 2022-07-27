@@ -11,6 +11,7 @@ import java.util.NoSuchElementException;
 @RestController
 @RequestMapping("/api/blog")
 @RequiredArgsConstructor
+@CrossOrigin
 
 public class BlogsController {
 
