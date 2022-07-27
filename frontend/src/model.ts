@@ -1,11 +1,10 @@
-import {keyboard} from "@testing-library/user-event/dist/keyboard";
 
 export interface Country {
     translations: Translations;
     flags: Flags;
     capital: string;
-    languages: any;
     population: string;
+    continents: Array<string>;
     cca2?: string;
     flag?: string;
 
@@ -14,7 +13,6 @@ export interface Country {
 
 interface Translations {
     deu: DE;
-
 
 }
 
@@ -28,10 +26,7 @@ interface Flags {
     png: string;
 }
 
-{/*
-    interface Languages {
-        [key: string]: string;
-    }*/
-}
+
+
 
 
