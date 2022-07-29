@@ -1,5 +1,5 @@
 import {Blogs} from "../services/modelBlogs";
-import {deletePost, editPost, fetchAllBlogs} from "../services/apiServices";
+import {deletePost, editPost} from "../services/apiServices";
 import {useEffect, useState} from "react";
 
 interface BlogProps{
@@ -56,7 +56,7 @@ export  default  function BlogsElement(props: BlogProps){
 
 
 
-            {isEditing ? (<button onClick={editBlog}>update</button>):
+            {isEditing ? (<button onClick={editBlog}>Update</button>):
             (<button onClick={() => setIsEditing(true)}>Edit</button>)}
             <button onClick={deleteBlog}>Delete</button>
 

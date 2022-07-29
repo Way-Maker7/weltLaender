@@ -19,7 +19,7 @@ const fetchBlogs = useCallback(() => {
 
     useEffect(() => {
         fetchBlogs()
-    }, [])
+    }, [fetchBlogs])
 
 const blogsElement = blogs.map(blog => <BlogsElement blog={blog}  fetchBlog={fetchBlogs}/>)
 
