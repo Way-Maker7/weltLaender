@@ -1,9 +1,13 @@
 .Items{
+
+
     background-color: darkgrey;
     border-radius: 37px;
     min-width: 17%;
     text-align: center;
     cursor: pointer;
+
+
 
 }
 
@@ -14,4 +18,5 @@ img{
 
 ul{
     list-style: none;
+    box-sizing: border-box;
 }

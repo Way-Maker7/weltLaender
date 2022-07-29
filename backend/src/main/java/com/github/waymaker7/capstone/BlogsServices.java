@@ -32,4 +32,8 @@ public class BlogsServices {
     public Blogs findById(String id) {
         return  blogsRepository.findById(id).orElseThrow();
     }
+
+    public void updatePost(Blogs blogs) {
+        blogsRepository.save(blogs);
+    }
 }

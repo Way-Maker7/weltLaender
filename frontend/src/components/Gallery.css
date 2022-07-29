@@ -1,4 +1,9 @@
 .Gallery{
-    text-align: center;
 
+    border: 5px ;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 1rem;
 }
