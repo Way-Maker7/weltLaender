@@ -1,22 +1,35 @@
 import Navigation from "../components/Navigation";
-import {FormEvent, useState} from "react";
-import {createPost} from "../services/apiServices";
+import {FormEvent, useEffect, useState} from "react";
+import {createPost, fetchAllBlogs} from "../services/apiServices";
+import {Blogs} from "../services/modelBlogs";
+import BlogsElement from "../components/BlogsElement";
 
 
 export default function Blog() {
     const [author, setAuthor] = useState('');
     const [content, setContent] = useState('');
     const [error, setError] = useState(false);
+    const [blogs, setBlogs] = useState<Array<Blogs>>([]);
+
+
+    useEffect(() => {
+        fetchAllBlogs()
+            .then((blogsFromDB: Array<Blogs>) => setBlogs(blogsFromDB))
+    }, [])
+
+const blogsElement = blogs.map(blog => <BlogsElement blog={blog}/>)
 
     const submitForm = (ev: FormEvent) => {
         ev.preventDefault();
-        createPost({  author: author, content: content
-    }).then(
-            () =>{
+        createPost({
+            author: author, content: content
+        }).then(
+            () => {
                 setAuthor('');
                 setContent('');
             }
-        )
+        ).then(() =>fetchAllBlogs()
+            .then((blogsFromDB: Array<Blogs>) => setBlogs(blogsFromDB)))
 
 
         if (content.length < 5) {
@@ -50,14 +63,10 @@ export default function Blog() {
                 <input type="submit" value="Save"/>
             </form>
 
-                <div>
-                    <h3>{author}</h3>
-                    <p>{content}</p>
-                    <div>
-                        <button>Edit</button>
-                        <button>Delete</button>
-                    </div>
-                </div>
+            <div>
+                {blogsElement}
+
+            </div>
 
         </div>
 
