@@ -10,3 +10,11 @@ export function createPost(blogs: Blogs){
    return  axios.post('http://localhost:8080/api/blog', blogs)
 
 }
+
+export function deletePost(id: string){
+    return axios.delete(`http://localhost:8080/api/blog/${id}`)
+}
+
+export function editPost(){
+    return axios.put()
+}
