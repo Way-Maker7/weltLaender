@@ -6,11 +6,11 @@ export default function Navigation(){
     return(
         <div className="navigation">
             <ul>
-                <NavLink to="/home">
+                <NavLink to="/home" className={(nav) => (nav.isActive ? "nav-active": "")}>
                     <li>home</li>
                 </NavLink>
 
-                <NavLink to="/blog">
+                <NavLink to="/blog" className={(nav) => (nav.isActive ? "nav-active": "")}>
                     <li>blog</li>
                 </NavLink>
             </ul>
