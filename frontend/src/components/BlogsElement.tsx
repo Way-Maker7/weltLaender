@@ -16,7 +16,7 @@ export  default  function BlogsElement(props: BlogProps){
 
 
 
-    useEffect( () => {setEditContent(props.blog.content)},[])
+    useEffect( () => {setEditContent(props.blog.content)},[props.blog.content])
 
     const deleteBlog = () => {
         if(props.blog.id){
