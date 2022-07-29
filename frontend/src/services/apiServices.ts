@@ -15,6 +15,14 @@ export function deletePost(id: string){
     return axios.delete(`http://localhost:8080/api/blog/${id}`)
 }
 
-export function editPost(){
-    return axios.put()
+export function editPost(id: string, content: string, author: string){
+    return axios.put(`http://localhost:8080/api/blog`, {
+        id,
+        author,
+        content
+    })
+}
+
+export function updatePost(id: string){
+    return axios.put(`http://localhost:8080/api/blog/${id}`)
 }

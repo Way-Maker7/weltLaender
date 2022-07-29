@@ -38,6 +38,11 @@ public class BlogsController {
         blogsServices.deletePost(id);
     }
 
+    @PutMapping("{id}")
+    public void updatePost(@RequestBody Blogs blogs){
+        blogsServices.updatePost(blogs);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Blogs> getBlogs(@PathVariable String id){
         try {

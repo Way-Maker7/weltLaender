@@ -1,26 +1,36 @@
 import {Blogs} from "../services/modelBlogs";
 import {deletePost, editPost, fetchAllBlogs} from "../services/apiServices";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 interface BlogProps{
     blog: Blogs
+    fetchBlog: Function
+
 
 }
 
 export  default  function BlogsElement(props: BlogProps){
 
     const [isEditing, setIsEditing] = useState(false);
-      const [editContent, setEditContent] = useState('');
+    const [editContent, setEditContent] = useState('');
 
+
+
+    useEffect( () => {setEditContent(props.blog.content)},[])
 
     const deleteBlog = () => {
-        deletePost("id")
-            .then(() =>fetchAllBlogs())
+        if(props.blog.id){
+            deletePost(props.blog.id)
+                .then(() =>props.fetchBlog())
+        }
+
 
     }
 
     const editBlog = () => {
-        editPost().then()
+        editPost(props.blog.id!, editContent, props.blog.author).then(
+            () => setIsEditing(false)
+        ).then(() => props.fetchBlog())
     }
 
     return(
@@ -29,16 +39,27 @@ export  default  function BlogsElement(props: BlogProps){
            <h3>{props.blog.author}</h3>
         </div>
         <div>
-            {props.blog.content}
+
+            {isEditing ? <div>
+                <textarea value={editContent} onChange={ev => setEditContent(ev.target.value)}
+                          placeholder="in which country were you last time?
+    how was your travel experience?
+    what do you think about this country?
+    which places can you recommend for excursions?"
+                />
+
+
+            </div>: <div>{props.blog.content}</div>}
         </div>
         <div>
-            {isEditing ?( <div>
-                {props.blog.content}
-            </div>)}
 
-            {isEditing ? (<button onClick={() => setIsEditing(false)}>update</button>):
+
+
+
+            {isEditing ? (<button onClick={editBlog}>update</button>):
             (<button onClick={() => setIsEditing(true)}>Edit</button>)}
             <button onClick={deleteBlog}>Delete</button>
+
         </div>
     </div>
     )

@@ -1,5 +1,5 @@
 import Navigation from "../components/Navigation";
-import {FormEvent, useEffect, useState} from "react";
+import {FormEvent, useCallback, useEffect, useState} from "react";
 import {createPost, fetchAllBlogs} from "../services/apiServices";
 import {Blogs} from "../services/modelBlogs";
 import BlogsElement from "../components/BlogsElement";
@@ -11,13 +11,17 @@ export default function Blog() {
     const [error, setError] = useState(false);
     const [blogs, setBlogs] = useState<Array<Blogs>>([]);
 
+const fetchBlogs = useCallback(() => {
+    fetchAllBlogs()
+        .then((blogsFromDB: Array<Blogs>) => setBlogs(blogsFromDB))
+}, [])
+
 
     useEffect(() => {
-        fetchAllBlogs()
-            .then((blogsFromDB: Array<Blogs>) => setBlogs(blogsFromDB))
+        fetchBlogs()
     }, [])
 
-const blogsElement = blogs.map(blog => <BlogsElement blog={blog}/>)
+const blogsElement = blogs.map(blog => <BlogsElement blog={blog}  fetchBlog={fetchBlogs}/>)
 
     const submitForm = (ev: FormEvent) => {
         ev.preventDefault();
