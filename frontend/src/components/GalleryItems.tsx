@@ -1,5 +1,5 @@
 import {Country} from "../model";
-import "./GalleryItems.css"
+import "./GalleryItems.scss"
 
 export interface GalleryItemsProps {
     country: Country
@@ -9,15 +9,13 @@ export interface GalleryItemsProps {
 export default function GalleryItems(props: GalleryItemsProps) {
 
     return (
-        <div className="Items">
-            <div>
-                {props.country.translations.deu.common} <br/>
-                {"Capital : " + props.country.capital} <br/>
-                {/*{"Language " + props.country.languages}<br/>*/}
-                {"Population: " + props.country.population}<br/><br/>
-               <ul> <li><img src={props.country.flags.png} alt="flage"/></li></ul>
-
+        <li className="Items">
+            <img src={props.country.flags.png} alt="flage"/>
+            <div className="ItemsInfos">
+               <h2> {props.country.translations.deu.common} </h2>
+                <h4>{"Capital : " + props.country.capital}</h4>
+               <p>Pop. {props.country.population}<br/></p>
             </div>
-        </div>
+        </li>
     )
 }
