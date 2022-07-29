@@ -1,0 +1,28 @@
+@import "./src/styles/main";
+
+.navigation{
+  ul{
+    display: flex;
+    margin: 30px;
+  }
+a {
+  text-decoration: none;
+  padding: 10px;
+
+  li {
+    color: $color-1;
+    transition: 0.2s;
+    cursor: pointer;
+
+    &:hover {
+      color: $color-3;
+    }
+
+  }
+}
+  .nav-active{
+    position: relative;
+
+
+  }
+}
