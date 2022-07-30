@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {Country} from "../model";
 import GalleryItems from "./GalleryItems";
-import "./GalleryItems.css"
+import "./Gallery.scss"
 
 
 export default function Gallery() {
@@ -10,12 +10,12 @@ export default function Gallery() {
 
     const [countries, setCountries] = useState<Array<Country>>([])
 
-    const [rangeValue, setRangeValue] = useState("3")
+    const [rangeValue, setRangeValue] = useState("7")
 
 
     const radios = ["Africa", "Asia", "Europe", "Oceania", "North America", "South America"]
 
-    const [radio, setRadio] = useState("Africa");
+    const [radio, setRadio] = useState("Europe");
 
     const names = countries.filter((c) => c.continents.includes(radio)).slice(0, parseInt(rangeValue)).map((c =>
         <GalleryItems country={c}/>))
@@ -31,24 +31,20 @@ export default function Gallery() {
     return (
         <div className="Gallery">
             <h1>Countries</h1>
-            <br/>
+            <ul className="radio">
             <input type="range" min="1" max="250" defaultValue={rangeValue}
                    onChange={(e) => setRangeValue(e.target.value)}/>
-            <br/>
-            <br/>
             {
-                radios.map((continents) => <div><input type="radio" id={continents} name="radioInput"
+                radios.map((continents) => <li><input type="radio" id={continents} name="radioInput"
                                                        defaultValue={radio}
                                                        checked={radio === continents} onChange={(e) =>
                     setRadio(e.target.id)}/>
-                    <label htmlFor={continents}>{continents}</label></div>)
+                    <label htmlFor={continents}>{continents}</label></li>)
             }
+            </ul>
 
+            <ul>{names}</ul>
 
-            <br/>
-            <br/>
-
-            <div>{names}</div>
         </div>
     )
 }
