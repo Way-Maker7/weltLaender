@@ -1,6 +1,7 @@
 import {Blogs} from "../services/modelBlogs";
 import {deletePost, editPost} from "../services/apiServices";
 import {useEffect, useState} from "react";
+import "./BlogsElement.scss";
 
 interface BlogProps{
     blog: Blogs
@@ -34,11 +35,11 @@ export  default  function BlogsElement(props: BlogProps){
     }
 
     return(
-    <div>
-        <div>
+    <div className = "articles">
+        <div className = "Header">
            <h3>{props.blog.author}</h3>
         </div>
-        <div>
+        <div className = "textarea">
 
             {isEditing ? <div>
                 <textarea value={editContent} onChange={ev => setEditContent(ev.target.value)}
@@ -51,15 +52,10 @@ export  default  function BlogsElement(props: BlogProps){
 
             </div>: <div>{props.blog.content}</div>}
         </div>
-        <div>
-
-
-
-
+        <div className = "button">
             {isEditing ? (<button onClick={editBlog}>Update</button>):
             (<button onClick={() => setIsEditing(true)}>Edit</button>)}
             <button onClick={deleteBlog}>Delete</button>
-
         </div>
     </div>
     )

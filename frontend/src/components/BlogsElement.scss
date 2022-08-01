@@ -1,0 +1,35 @@
+@import "./src/styles/main";
+.articles{
+  background: lightgrey;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 10px 50px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+
+  .Header{
+    margin: 5px 0 10px;
+  }
+
+  .textarea{
+    height: 50px;
+    width: 100%;
+    outline: none;
+    resize: none;
+  }
+
+  .button{
+    margin: 5px 2px 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+
+    button{
+      cursor: pointer;
+      margin: 0 3px;
+      width: 70px;
+      height: 20px;
+    }
+  }
+
+}

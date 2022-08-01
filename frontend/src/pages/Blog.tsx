@@ -3,6 +3,7 @@ import {FormEvent, useCallback, useEffect, useState} from "react";
 import {createPost, fetchAllBlogs} from "../services/apiServices";
 import {Blogs} from "../services/modelBlogs";
 import BlogsElement from "../components/BlogsElement";
+import "./Blog.scss"
 
 
 export default function Blog() {
@@ -47,12 +48,11 @@ const blogsElement = blogs.map(blog => <BlogsElement blog={blog}  fetchBlog={fet
     return (
         <div>
             <Navigation/>
+            <div className = "blog">
             <h1>Blog</h1>
             <form onSubmit={submitForm}>
                 <input type="text" value={author} onChange={ev => setAuthor(ev.target.value)}
                        placeholder="enter your name please"/>
-                <br/>
-                <br/>
                 <textarea value={content} onChange={ev => setContent(ev.target.value)}
                           placeholder="in which country were you last time?
     how was your travel experience?
@@ -63,7 +63,6 @@ const blogsElement = blogs.map(blog => <BlogsElement blog={blog}  fetchBlog={fet
 
     </textarea>
                 {error && <p>please enter a minimum of 5 characters</p>}
-                <br/>
                 <input type="submit" value="Save"/>
             </form>
 
@@ -71,7 +70,7 @@ const blogsElement = blogs.map(blog => <BlogsElement blog={blog}  fetchBlog={fet
                 {blogsElement}
 
             </div>
-
+            </div>
         </div>
 
     )

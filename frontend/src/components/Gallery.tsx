@@ -10,7 +10,7 @@ export default function Gallery() {
 
     const [countries, setCountries] = useState<Array<Country>>([])
 
-    const [rangeValue, setRangeValue] = useState("7")
+    const [rangeValue, setRangeValue] = useState("9")
 
 
     const radios = ["Africa", "Asia", "Europe", "Oceania", "North America", "South America"]
