@@ -1,5 +1,10 @@
 import axios, {AxiosResponse} from "axios";
 import {Blogs} from "./modelBlogs";
+import {userCreationData} from "./modelUser";
+
+export const registerUser = (userCreationData: userCreationData) =>{
+    return axios.post('/api/users', userCreationData)
+}
 
 export function fetchAllBlogs(){
     return axios.get('http://localhost:8080/api/blog')
