@@ -39,4 +39,34 @@ public class UserServiceTest {
                 .isThrownBy(() ->userService.createNewUser(userCreationDTO))
                 .withMessage("passwords do not match");
     }
+
+    @Test
+    void shouldNotCreateNewUser_usernameIsBlank(){
+        //Given
+        UserCreationDTO userCreationDTO = new UserCreationDTO(" ", "password", "password");
+        UserService userService = new UserService(null, null);
+
+        //when
+        userService.createNewUser(userCreationDTO);
+
+        //then
+        Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() ->userService.createNewUser(userCreationDTO))
+                .withMessage("username is blank");
+    }
+
+    @Test
+    void shouldNotCreateNewUser_usernameIsNull(){
+        //Given
+        UserCreationDTO userCreationDTO = new UserCreationDTO(null, "password", "password");
+        UserService userService = new UserService(null, null);
+
+        //when
+        userService.createNewUser(userCreationDTO);
+
+        //then
+        Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() ->userService.createNewUser(userCreationDTO))
+                .withMessage("username is blank");
+    }
 }

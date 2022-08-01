@@ -20,6 +20,10 @@ public class UserService {
             throw new IllegalArgumentException("passwords do not match");
         }
 
+        if(userCreationDTO.getUsername() == null || userCreationDTO.getUsername().isBlank()){
+            throw new IllegalArgumentException("username is blank");
+        }
+
 
        User user = new User();
        user.setUsername(userCreationDTO.getUsername());
