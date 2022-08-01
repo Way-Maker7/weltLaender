@@ -1,4 +1,7 @@
 import {FormEvent, useState} from "react";
+import "./Register.scss";
+
+
 
 export default function Register(){
 
@@ -11,7 +14,7 @@ const register = (ev: FormEvent) => {
 }
 
     return(
-        <div>
+        <div className="register">
             <h1>Get an Account</h1>
             <form onSubmit={register}>
                 <input type="text" value={username} onChange={ev => setUsername(ev.target.value)} placeholder= "Username"/>
