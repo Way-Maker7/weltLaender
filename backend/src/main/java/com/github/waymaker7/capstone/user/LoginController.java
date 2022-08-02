@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,13 +23,17 @@ public class LoginController {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
 
+    private final UserService userService;
+
 
     @PostMapping
-    public ResponseEntity<LoginResponse> login(LoginData loginData){
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginData loginData){
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginData.getUsername(),
                     loginData.getPassword()));
-            String jwt = jwtService.createJwt(new HashMap<>(), loginData.getUsername());
+            User user = userService.findByUsername(loginData.getUsername()).orElseThrow();
+
+            String jwt = jwtService.createJwt(new HashMap<>(), user.getId());
             return ResponseEntity.ok(new LoginResponse(jwt));
         }
         catch (Exception e){

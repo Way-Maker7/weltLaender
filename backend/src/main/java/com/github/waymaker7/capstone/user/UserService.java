@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,10 +37,13 @@ public class UserService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
-        return userRepository.findByUsername(username)
+        return findByUsername(username)
                 .map(user -> new org.springframework.security.core.userdetails
                         .User(user.getUsername(), user.getPassword(), List.of()))
                 .orElseThrow(() -> new UsernameNotFoundException(username + " not found"));
     }
 
+    public Optional<User> findByUsername(String username){
+        return userRepository.findByUsername(username);
+    }
 }
