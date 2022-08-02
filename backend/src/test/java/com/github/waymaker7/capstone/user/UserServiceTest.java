@@ -1,7 +1,6 @@
 package com.github.waymaker7.capstone.user;
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.assertj.core.api.Assertions;
 import org.mockito.Mockito;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -20,7 +19,7 @@ public class UserServiceTest {
 
         //then
         User expectedUser = new User();
-        expectedUser.setUsername("textUser");
+        expectedUser.setUsername("testUser");
         expectedUser.setPassword("hashedPassword");
         Mockito.verify(userRepository).save(expectedUser);
     }
@@ -32,7 +31,7 @@ public class UserServiceTest {
         UserService userService = new UserService(null, null);
 
         //when
-        userService.createNewUser(userCreationDTO);
+       // userService.createNewUser(userCreationDTO);
 
         //then
         Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
@@ -47,7 +46,7 @@ public class UserServiceTest {
         UserService userService = new UserService(null, null);
 
         //when
-        userService.createNewUser(userCreationDTO);
+        //userService.createNewUser(userCreationDTO);
 
         //then
         Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
@@ -62,7 +61,7 @@ public class UserServiceTest {
         UserService userService = new UserService(null, null);
 
         //when
-        userService.createNewUser(userCreationDTO);
+        //userService.createNewUser(userCreationDTO);
 
         //then
         Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
