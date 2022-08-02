@@ -2,9 +2,12 @@ package com.github.waymaker7.capstone.user;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -30,4 +33,13 @@ public class UserService {
 
        userRepository.save(user);
     }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
+        return userRepository.findByUsername(username)
+                .map(user -> new org.springframework.security.core.userdetails
+                        .User(user.getUsername(), user.getPassword(), List.of()))
+                .orElseThrow(() -> new UsernameNotFoundException(username + " not found"));
+    }
+
 }
