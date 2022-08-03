@@ -1,9 +1,15 @@
 import axios, {AxiosResponse} from "axios";
 import {Blogs} from "./modelBlogs";
 import {userCreationData} from "./modelUser";
+import {LoginData, LoginResponse} from "./modelLogin";
 
 export const registerUser = (userCreationData: userCreationData) =>{
     return axios.post('/api/users', userCreationData)
+}
+
+export const loginUser = (loginData: LoginData) => {
+    return axios.post('/api/auth/login', loginData)
+        .then((response: AxiosResponse<LoginResponse>) => response.data)
 }
 
 export function fetchAllBlogs(){
