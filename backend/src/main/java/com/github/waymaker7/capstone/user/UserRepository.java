@@ -3,7 +3,10 @@ package com.github.waymaker7.capstone.user;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface UserRepository extends MongoRepository<User, String> {
+import java.util.Optional;
 
+@Repository
+public interface UserRepository extends MongoRepository<MyUser, String> {
+
+    Optional<MyUser> findByUsername(String username);
 }
