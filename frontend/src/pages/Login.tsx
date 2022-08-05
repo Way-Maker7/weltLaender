@@ -2,6 +2,7 @@ import {FormEvent, useState} from "react";
 import "./Login.scss";
 import {loginUser} from "../services/apiServices";
 import {useNavigate} from "react-router";
+import {Link} from "react-router-dom";
 
 export default function Login(){
 
@@ -23,6 +24,7 @@ export default function Login(){
     return(
         <div className= "login">
             <h3>Login</h3>
+            You don't have an Account? <Link to="/register">you can register hier!!!</Link>
             <form onSubmit={login}>
                 <input type="text" value={username} onChange={ev => setUsername(ev.target.value)} placeholder= "Username"/>
                 <input type="password" value={password} onChange={ev => setPassword(ev.target.value)} placeholder="Password"/>
