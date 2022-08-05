@@ -1,5 +1,7 @@
 package com.github.waymaker7.capstone.security;
 
+import com.github.waymaker7.capstone.user.User;
+import com.github.waymaker7.capstone.user.UserService;
 import io.jsonwebtoken.Claims;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,9 +21,11 @@ import java.util.List;
 public class JwtAuthFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
+    private final UserService userService;
 
-    public JwtAuthFilter(JwtService jwtService) {
+    public JwtAuthFilter(JwtService jwtService, UserService userService) {
         this.jwtService = jwtService;
+        this.userService = userService;
     }
 
     @Override
@@ -50,7 +54,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     private void setSecurityContext(Claims claims) {
         List<SimpleGrantedAuthority> grantedAuthorities = claims.get("roles") == null ? List.of() : ((List<String>) claims.get("roles")).stream().map(au -> new SimpleGrantedAuthority(au)).toList();
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(claims.getSubject(), "", grantedAuthorities);
+        User user = userService.findById(claims.getSubject()).orElseThrow();
+
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user.getUsername(), "", grantedAuthorities);
         SecurityContextHolder.getContext().setAuthentication(token);
     }
 }

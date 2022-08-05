@@ -33,6 +33,8 @@ public class JwtService {
 
     public Claims extractAllClaims(String token) {
         return Jwts.parser()
-                .setSigningKey(SignatureAlgorithm.HS256, secret);
+                .setSigningKey(secret)
+                .parseClaimsJws(token)
+                .getBody();
     }
 }
