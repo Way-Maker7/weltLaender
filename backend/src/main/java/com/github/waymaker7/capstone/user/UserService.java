@@ -38,8 +38,7 @@ public class UserService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
         return findByUsername(username)
-                .map(user -> new org.springframework.security.core.userdetails
-                        .User(user.getUsername(), user.getPassword(), List.of()))
+                .map(user -> new User(user.getUsername(), user.getPassword(), List.of()))
                 .orElseThrow(() -> new UsernameNotFoundException(username + " not found"));
     }
 

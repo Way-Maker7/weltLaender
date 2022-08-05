@@ -1,6 +1,7 @@
 package com.github.waymaker7.capstone.security;
 
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,11 +23,16 @@ public class JwtService {
     public String createJwt(Map<String, Object> claims, String subject){
 
         return Jwts.builder()
-                .setSubject(subject)
                 .setClaims(claims)
+                .setSubject(subject)
                 .setIssuedAt(Date.from(Instant.now()))
                 .setExpiration(Date.from(Instant.now().plus(Duration.ofHours(24))))
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .compact();
+    }
+
+    public Claims extractAllClaims(String token) {
+        return Jwts.parser()
+                .setSigningKey(SignatureAlgorithm.HS256, secret);
     }
 }
