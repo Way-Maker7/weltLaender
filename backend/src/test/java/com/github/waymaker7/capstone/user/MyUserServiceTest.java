@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.mockito.Mockito;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-public class UserServiceTest {
+public class MyUserServiceTest {
     @Test
     void shouldCreateNewUser(){
         //Given
@@ -18,10 +18,10 @@ public class UserServiceTest {
         userService.createNewUser(userCreationData);
 
         //then
-        User expectedUser = new User();
-        expectedUser.setUsername("testUser");
-        expectedUser.setPassword("hashedPassword");
-        Mockito.verify(userRepository).save(expectedUser);
+        MyUser expectedMyUser = new MyUser();
+        expectedMyUser.setUsername("testUser");
+        expectedMyUser.setPassword("hashedPassword");
+        Mockito.verify(userRepository).save(expectedMyUser);
     }
 
     @Test

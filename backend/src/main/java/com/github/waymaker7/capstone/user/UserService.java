@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -26,20 +25,20 @@ public class UserService {
         }
 
 
-       User user = new User();
-       user.setUsername(userCreationData.getUsername());
-       user.setPassword(passwordEncoder.encode(userCreationData.getPassword()));
+       MyUser myUser = new MyUser();
+       myUser.setUsername(userCreationData.getUsername());
+       myUser.setPassword(passwordEncoder.encode(userCreationData.getPassword()));
 
-       userRepository.save(user);
+       userRepository.save(myUser);
     }
 
 
 
-    public Optional<User> findByUsername(String username){
+    public Optional<MyUser> findByUsername(String username){
         return userRepository.findByUsername(username);
     }
 
-    public Optional<User> findById(String userId) {
+    public Optional<MyUser> findById(String userId) {
         return userRepository.findById(userId);
     }
 }

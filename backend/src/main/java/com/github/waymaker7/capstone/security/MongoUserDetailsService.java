@@ -1,7 +1,6 @@
 package com.github.waymaker7.capstone.security;
 
-
-import com.github.waymaker7.capstone.user.User;
+import org.springframework.security.core.userdetails.User;
 import com.github.waymaker7.capstone.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -31,9 +31,9 @@ public class LoginController {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginData.getUsername(),
                     loginData.getPassword()));
-            User user = userService.findByUsername(loginData.getUsername()).orElseThrow();
+            MyUser myUser = userService.findByUsername(loginData.getUsername()).orElseThrow();
 
-            String jwt = jwtService.createJwt(new HashMap<>(), user.getId());
+            String jwt = jwtService.createJwt(new HashMap<>(), myUser.getId());
             return ResponseEntity.ok(new LoginResponse(jwt));
         }
         catch (Exception e){

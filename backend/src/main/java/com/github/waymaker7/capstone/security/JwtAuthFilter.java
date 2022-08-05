@@ -1,6 +1,6 @@
 package com.github.waymaker7.capstone.security;
 
-import com.github.waymaker7.capstone.user.User;
+import com.github.waymaker7.capstone.user.MyUser;
 import com.github.waymaker7.capstone.user.UserService;
 import io.jsonwebtoken.Claims;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -54,9 +54,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     private void setSecurityContext(Claims claims) {
         List<SimpleGrantedAuthority> grantedAuthorities = claims.get("roles") == null ? List.of() : ((List<String>) claims.get("roles")).stream().map(au -> new SimpleGrantedAuthority(au)).toList();
-        User user = userService.findById(claims.getSubject()).orElseThrow();
+        MyUser myUser = userService.findById(claims.getSubject()).orElseThrow();
 
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user.getUsername(), "", grantedAuthorities);
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(myUser.getUsername(), "", grantedAuthorities);
         SecurityContextHolder.getContext().setAuthentication(token);
     }
 }
