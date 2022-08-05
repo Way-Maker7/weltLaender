@@ -9,10 +9,17 @@ export default function Navigation(){
                 <NavLink to="/" className={(nav) => (nav.isActive ? "nav-active": "")}>
                     <li>home</li>
                 </NavLink>
+                {localStorage.getItem("jwt") ?
+                    <NavLink to="/blog" className={(nav) => (nav.isActive ? "nav-active": "")}>
+                        <li>blog</li>
+                    </NavLink> :
+                    <NavLink to="/login" className={(nav) => (nav.isActive ? "nav-active": "")}>
+                        <li>login</li>
+                    </NavLink>
 
-                <NavLink to="/blog" className={(nav) => (nav.isActive ? "nav-active": "")}>
-                    <li>blog</li>
-                </NavLink>
+                }
+
+
             </ul>
         </div>
     )

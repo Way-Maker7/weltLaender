@@ -16,7 +16,7 @@ export default function Register(){
 const register = (ev: FormEvent) => {
     ev.preventDefault();
     registerUser({username,  password, passwordRepeat})
-        .then(() => nav('/'))
+        .then(() => nav('/login'))
         .catch(() => setErrorMessage('user could not be created'))
 }
 
