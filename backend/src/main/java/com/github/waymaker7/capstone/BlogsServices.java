@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -25,8 +26,9 @@ public class BlogsServices {
         blogsRepository.save(blogs);
     }
 
-    public void deletePost(String id) {
-        blogsRepository.deleteById(id);
+    public void deletePost(String id, String userId) {
+
+       BlogsRepository.deleteByIdAndUserId(id, userId);
     }
 
     public Blogs findById(String id) {

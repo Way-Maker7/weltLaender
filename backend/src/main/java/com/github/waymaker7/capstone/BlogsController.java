@@ -41,8 +41,17 @@ public class BlogsController {
     }
 
     @DeleteMapping("/{id}")
-    public void deletePost(@PathVariable String id){
-        blogsServices.deletePost(id);
+    public ResponseEntity<Void>  deletePost(@PathVariable String id, Principal principal){
+
+        try {
+            MyUser user = userService.findByUsername(principal.getName()).orElseThrow();
+            blogsServices.deletePost(id, user.getId());
+            return ResponseEntity.ok().build();
+        }
+        catch (Exception e){
+            return ResponseEntity.notFound().build();
+        }
+
     }
 
     @PutMapping("{id}")
