@@ -36,17 +36,32 @@ public class BlogsController {
     }
 
     @PutMapping
-    public void editPost(@RequestBody Blogs blogs){
-        blogsServices.editPost(blogs);
+    public ResponseEntity<Void> editPost(@RequestBody Blogs blogs,Principal principal ){
+
+        try{
+            MyUser user = userService.findByUsername(principal.getName()).orElseThrow();
+            blogsServices.editPost(blogs, user.getId());
+            return ResponseEntity.ok().build();
+        }
+        catch (IllegalStateException e){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+        catch (Exception e){
+            return ResponseEntity.notFound().build();
+        }
+
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void>  deletePost(@PathVariable String id, Principal principal){
+    public ResponseEntity<Void> deletePost(@PathVariable String id, Principal principal){
 
         try {
             MyUser user = userService.findByUsername(principal.getName()).orElseThrow();
             blogsServices.deletePost(id, user.getId());
             return ResponseEntity.ok().build();
+        }
+        catch (IllegalStateException e){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
         catch (Exception e){
             return ResponseEntity.notFound().build();

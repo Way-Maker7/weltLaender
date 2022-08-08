@@ -6,6 +6,7 @@ import BlogsElement from "../components/BlogsElement";
 import "./Blog.scss"
 
 
+
 export default function Blog() {
     const [author, setAuthor] = useState('');
     const [content, setContent] = useState('');
@@ -22,7 +23,10 @@ const fetchBlogs = useCallback(() => {
         fetchBlogs()
     }, [fetchBlogs])
 
-const blogsElement = blogs.map(blog => <BlogsElement blog={blog}  fetchBlog={fetchBlogs}/>)
+
+
+
+    const blogsElement = blogs.map(blog => <BlogsElement blog={blog}  fetchBlog={fetchBlogs}/>)
 
     const submitForm = (ev: FormEvent) => {
         ev.preventDefault();

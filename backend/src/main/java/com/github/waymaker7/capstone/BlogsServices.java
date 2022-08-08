@@ -22,18 +22,25 @@ public class BlogsServices {
     return blogsRepository.findAll();
 }
 
-    public void editPost(Blogs blogs) {
-        blogsRepository.save(blogs);
+    public void editPost(Blogs blogs, String userId) {
+        if(Objects.equals(userId, blogs.getUserId())){
+            blogsRepository.save(blogs);
+        }
+        else {
+            throw new IllegalArgumentException("you are not allow to edit this post!");
+        }
     }
 
     public void deletePost(String id, String userId) {
 
-       BlogsRepository.deleteByIdAndUserId(id, userId);
+       blogsRepository.deleteByIdAndUserId(id, userId)
+               .orElseThrow(() -> new IllegalStateException("you are not allow to delete this post!"));
     }
 
     public Blogs findById(String id) {
         return  blogsRepository.findById(id).orElseThrow();
     }
+
 
     public void updatePost(Blogs blogs) {
         blogsRepository.save(blogs);
