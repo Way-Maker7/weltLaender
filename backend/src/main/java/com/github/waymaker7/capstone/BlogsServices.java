@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -13,7 +12,8 @@ public class BlogsServices {
 
     private final BlogsRepository blogsRepository;
 
-    public void createPost(Blogs blogs) {
+    public void createPost(Blogs blogs, String userId) {
+        blogs.setId(userId);
         blogsRepository.save(blogs);
     }
 
