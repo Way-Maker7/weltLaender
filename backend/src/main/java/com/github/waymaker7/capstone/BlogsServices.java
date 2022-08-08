@@ -22,8 +22,8 @@ public class BlogsServices {
     return blogsRepository.findAll();
 }
 
-    public void editPost(Blogs blogs, String userId) {
-        if(Objects.equals(userId, blogs.getUserId())){
+    public void editPost(Blogs blogs, String author) {
+        if(Objects.equals(author, blogs.getAuthor())){
             blogsRepository.save(blogs);
         }
         else {
@@ -31,9 +31,9 @@ public class BlogsServices {
         }
     }
 
-    public void deletePost(String id, String userId) {
+    public void deletePost(String id, String author) {
 
-       blogsRepository.deleteByIdAndUserId(id, userId)
+       blogsRepository.deleteByIdAndAuthor(id, author)
                .orElseThrow(() -> new IllegalStateException("you are not allow to delete this post!"));
     }
 

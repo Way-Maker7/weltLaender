@@ -8,5 +8,5 @@ import java.util.Optional;
 @Repository
 public interface BlogsRepository extends MongoRepository<Blogs, String> {
 
-     Optional<Blogs> deleteByIdAndUserId(String id, String userId);
+     Optional<Blogs> deleteByIdAndAuthor(String id, String author);
 }

@@ -31,6 +31,7 @@ public class BlogsController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void createPost(@RequestBody Blogs blogs, Principal principal){
+        blogs.setAuthor(principal.getName());
        MyUser user = userService.findByUsername(principal.getName()).orElseThrow();
         blogsServices.createPost(blogs, user.getId());
     }
@@ -39,8 +40,8 @@ public class BlogsController {
     public ResponseEntity<Void> editPost(@RequestBody Blogs blogs,Principal principal ){
 
         try{
-            MyUser user = userService.findByUsername(principal.getName()).orElseThrow();
-            blogsServices.editPost(blogs, user.getId());
+            //MyUser user = userService.findByUsername(principal.getName()).orElseThrow();
+            blogsServices.editPost(blogs, principal.getName());
             return ResponseEntity.ok().build();
         }
         catch (IllegalStateException e){
@@ -57,7 +58,7 @@ public class BlogsController {
 
         try {
             MyUser user = userService.findByUsername(principal.getName()).orElseThrow();
-            blogsServices.deletePost(id, user.getId());
+            blogsServices.deletePost(id, user.getUsername());
             return ResponseEntity.ok().build();
         }
         catch (IllegalStateException e){

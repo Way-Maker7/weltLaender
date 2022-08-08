@@ -55,8 +55,8 @@ const fetchBlogs = useCallback(() => {
             <div className = "blog">
             <h1>Blog</h1>
             <form onSubmit={submitForm}>
-                <input type="text" value={author} onChange={ev => setAuthor(ev.target.value)}
-                       placeholder="enter your name please"/>
+                {/*<input type="text" value={author} onChange={ev => setAuthor(ev.target.value)}
+                       placeholder="enter your name please"/>*/}
                 <textarea value={content} onChange={ev => setContent(ev.target.value)}
                           placeholder="in which country were you last time?
     how was your travel experience?

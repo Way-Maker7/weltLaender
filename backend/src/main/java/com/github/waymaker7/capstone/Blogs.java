@@ -14,7 +14,7 @@ public class Blogs {
 
     private String author;
 
-    private String userId;
+    //private String userId;
 
     private String content;
 
