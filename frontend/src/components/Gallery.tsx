@@ -17,16 +17,18 @@ export default function Gallery() {
 
     const [radio, setRadio] = useState("Europe");
 
+    const [search, setSearch] = useState("");
+
     const names = countries.filter((c) => c.continents.includes(radio)).slice(0, parseInt(rangeValue)).map((c =>
         <GalleryItems country={c}/>))
 
 
     useEffect(() => {
 
-        axios.get("https://restcountries.com/v3.1/all")
+        axios.get(`https://restcountries.com/v3.1/all + ${search}`)
             .then(response => setCountries(response.data))
 
-    }, [])
+    }, [search])
 
     return (
         <div className="Gallery">
@@ -43,6 +45,10 @@ export default function Gallery() {
             }
             </ul>
 
+            <div>
+                <input type="text" placeholder="enter the name of a country please"
+                       onChange={(e) => setSearch(e.target.value)}/>
+            </div>
             <ul>{names}</ul>
 
         </div>
