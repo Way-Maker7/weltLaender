@@ -13,7 +13,7 @@ export const loginUser = (loginData: LoginData) => {
 }
 
 export function fetchAllBlogs(){
-    return axios.get('http://localhost:8080/api/blog', {
+    return axios.get('/api/blog', {
         headers:{
             Authorization: `Bearer ${localStorage.getItem('jwt')}`
         }
@@ -22,7 +22,7 @@ export function fetchAllBlogs(){
 }
 
 export function createPost(blogs: Blogs){
-   return  axios.post('http://localhost:8080/api/blog', blogs, {
+   return  axios.post('/api/blog', blogs, {
        headers:{
            Authorization: `Bearer ${localStorage.getItem('jwt')}`
        }
@@ -31,7 +31,7 @@ export function createPost(blogs: Blogs){
 }
 
 export function deletePost(id: string){
-    return axios.delete(`http://localhost:8080/api/blog/${id}`,{
+    return axios.delete(`/api/blog/${id}`,{
         headers:{
             Authorization: `Bearer ${localStorage.getItem('jwt')}`
         }
@@ -39,7 +39,7 @@ export function deletePost(id: string){
 }
 
 export function editPost(id: string, content: string, author: string){
-    return axios.put(`http://localhost:8080/api/blog`, {
+    return axios.put(`/api/blog`, {
         id,
         author,
         content
@@ -51,5 +51,5 @@ export function editPost(id: string, content: string, author: string){
 }
 
 export function updatePost(id: string){
-    return axios.put(`http://localhost:8080/api/blog/${id}`)
+    return axios.put(`/api/blog/${id}`)
 }

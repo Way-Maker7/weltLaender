@@ -13,6 +13,7 @@ export interface Country {
 
 interface Translations {
     deu: DE;
+    /*eng: ENG;*/
 
 }
 
@@ -25,6 +26,11 @@ interface Flags {
     svg: string;
     png: string;
 }
+/*
+interface ENG {
+    common: string;
+    official: string;
+}*/
 
 
 

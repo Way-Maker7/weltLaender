@@ -1,10 +1,13 @@
 package com.github.waymaker7.capstone;
 
+import com.github.waymaker7.capstone.user.MyUser;
+import com.github.waymaker7.capstone.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -16,6 +19,9 @@ import java.util.NoSuchElementException;
 public class BlogsController {
 
     private final BlogsServices blogsServices;
+
+    private final UserService userService;
+
     @GetMapping
     public List<Blogs> getBlogs(){
 
@@ -24,18 +30,44 @@ public class BlogsController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createPost(@RequestBody Blogs blogs){
-        blogsServices.createPost(blogs);
+    public void createPost(@RequestBody Blogs blogs, Principal principal){
+        blogs.setAuthor(principal.getName());
+       MyUser user = userService.findByUsername(principal.getName()).orElseThrow();
+        blogsServices.createPost(blogs, user.getId());
     }
 
     @PutMapping
-    public void editPost(@RequestBody Blogs blogs){
-        blogsServices.editPost(blogs);
+    public ResponseEntity<Void> editPost(@RequestBody Blogs blogs,Principal principal ){
+
+        try{
+            //MyUser user = userService.findByUsername(principal.getName()).orElseThrow();
+            blogsServices.editPost(blogs, principal.getName());
+            return ResponseEntity.ok().build();
+        }
+        catch (IllegalStateException e){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+        catch (Exception e){
+            return ResponseEntity.notFound().build();
+        }
+
     }
 
     @DeleteMapping("/{id}")
-    public void deletePost(@PathVariable String id){
-        blogsServices.deletePost(id);
+    public ResponseEntity<Void> deletePost(@PathVariable String id, Principal principal){
+
+        try {
+            MyUser user = userService.findByUsername(principal.getName()).orElseThrow();
+            blogsServices.deletePost(id, user.getUsername());
+            return ResponseEntity.ok().build();
+        }
+        catch (IllegalStateException e){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+        catch (Exception e){
+            return ResponseEntity.notFound().build();
+        }
+
     }
 
     @PutMapping("{id}")
