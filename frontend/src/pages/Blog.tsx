@@ -4,7 +4,7 @@ import {createPost, fetchAllBlogs} from "../services/apiServices";
 import {Blogs} from "../services/modelBlogs";
 import BlogsElement from "../components/BlogsElement";
 import "./Blog.scss"
-
+import {useNavigate} from "react-router";
 
 
 export default function Blog() {
@@ -13,10 +13,10 @@ export default function Blog() {
     const [error, setError] = useState(false);
     const [blogs, setBlogs] = useState<Array<Blogs>>([]);
 
-const fetchBlogs = useCallback(() => {
-    fetchAllBlogs()
-        .then((blogsFromDB: Array<Blogs>) => setBlogs(blogsFromDB))
-}, [])
+    const fetchBlogs = useCallback(() => {
+        fetchAllBlogs()
+            .then((blogsFromDB: Array<Blogs>) => setBlogs(blogsFromDB))
+    }, [])
 
 
     useEffect(() => {
@@ -24,9 +24,7 @@ const fetchBlogs = useCallback(() => {
     }, [fetchBlogs])
 
 
-
-
-    const blogsElement = blogs.map(blog => <BlogsElement blog={blog}  fetchBlog={fetchBlogs}/>)
+    const blogsElement = blogs.map(blog => <BlogsElement blog={blog} fetchBlog={fetchBlogs}/>)
 
     const submitForm = (ev: FormEvent) => {
         ev.preventDefault();
@@ -37,7 +35,7 @@ const fetchBlogs = useCallback(() => {
                 setAuthor('');
                 setContent('');
             }
-        ).then(() =>fetchAllBlogs()
+        ).then(() => fetchAllBlogs()
             .then((blogsFromDB: Array<Blogs>) => setBlogs(blogsFromDB)))
 
 
@@ -49,32 +47,41 @@ const fetchBlogs = useCallback(() => {
 
     };
 
+    function logout(){
+        localStorage.clear()
+    }
+
+    const nav = useNavigate()
+
+
     return (
         <div>
             <Navigation/>
-            <div className = "blog">
-            <h1>Blog</h1>
-            <form onSubmit={submitForm}>
-                {/*<input type="text" value={author} onChange={ev => setAuthor(ev.target.value)}
+          <div className="logout"><button onClick={()=> nav("/")} onClickCapture={logout}>logout</button></div>
+            <div className="blog">
+                <h1>Blog</h1>
+                <form onSubmit={submitForm}>
+                    {/*<input type="text" value={author} onChange={ev => setAuthor(ev.target.value)}
                        placeholder="enter your name please"/>*/}
-                <textarea value={content} onChange={ev => setContent(ev.target.value)}
-                          placeholder="in which country were you last time?
+                    <textarea value={content} onChange={ev => setContent(ev.target.value)}
+                              placeholder="in which country were you last time?
     how was your travel experience?
     what do you think about this country?
     which places can you recommend for excursions?"
-                          cols={40} rows={10}
-                          style={{border: error ? "1px solid red" : "1px solid blue"}}>
+                              cols={40} rows={10}
+                              style={{border: error ? "1px solid red" : "1px solid blue"}}>
 
     </textarea>
-                {error && <p>please enter a minimum of 5 characters</p>}
-                <input type="submit" value="Save"/>
-            </form>
+                    {error && <p>please enter a minimum of 5 characters</p>}
+                    <input type="submit" value="Save"/>
+                </form>
 
-            <div>
-                {blogsElement}
+                <div>
+                    {blogsElement}
 
+                </div>
             </div>
-            </div>
+
         </div>
 
     )
