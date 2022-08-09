@@ -7,6 +7,7 @@ export interface Country {
     continents: Array<string>;
     cca2?: string;
     flag?: string;
+    index?: number;
 
 
 }

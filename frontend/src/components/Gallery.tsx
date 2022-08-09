@@ -21,7 +21,7 @@ export default function Gallery() {
 
 
     const names = countries.filter((c) => c.continents.includes(radio)).slice(0, parseInt(rangeValue)).map((c =>
-        <GalleryItems country={c}/>))
+        <GalleryItems  country={c}/>))
 
 
     useEffect(() => {
