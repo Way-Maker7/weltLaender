@@ -33,8 +33,8 @@ public class BlogsServices {
 
     public void deletePost(String id, String author) {
 
-       blogsRepository.deleteByIdAndAuthor(id, author)
-               .orElseThrow(() -> new IllegalStateException("you are not allow to delete this post!"));
+       blogsRepository.deleteByIdAndAuthor(id, author);
+
     }
 
     public Blogs findById(String id) {
