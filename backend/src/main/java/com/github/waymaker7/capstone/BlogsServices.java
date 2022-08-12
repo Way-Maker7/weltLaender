@@ -13,8 +13,8 @@ public class BlogsServices {
 
     private final BlogsRepository blogsRepository;
 
-    public void createPost(Blogs blogs, String userId) {
-        blogs.setId(userId);
+    public void createPost(Blogs blogs) {
+       // blogs.setId(userId);
         blogsRepository.save(blogs);
     }
 

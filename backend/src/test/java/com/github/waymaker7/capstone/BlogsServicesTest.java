@@ -19,7 +19,8 @@ public class BlogsServicesTest {
     BlogsServices testServices = new BlogsServices(testRepos);
 
     Blogs testBlogs = new Blogs("testAuthor", "testContent");
-    testServices.createPost(testBlogs, "userId");
+    //testServices.createPost(testBlogs, "userId");
+    testServices.createPost(testBlogs);
     Mockito.verify(testRepos).save(testBlogs);
 }
 

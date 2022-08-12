@@ -33,7 +33,8 @@ public class BlogsController {
     public void createPost(@RequestBody Blogs blogs, Principal principal){
         blogs.setAuthor(principal.getName());
        MyUser user = userService.findByUsername(principal.getName()).orElseThrow();
-        blogsServices.createPost(blogs, user.getId());
+       // blogsServices.createPost(blogs, user.getId());
+        blogsServices.createPost(blogs);
     }
 
     @PutMapping
